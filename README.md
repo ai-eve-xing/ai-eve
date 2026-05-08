@@ -1,3 +1,205 @@
+# 🍎 AI Eve
+> Your Exclusive AI Companion — An intelligent companion assistant designed for male users
+
+AI Eve is an open-source, self-hostable AI companion application. More than just a chatbot, she is a virtual companion with personality, memory, and warmth.
+
+## ✨ Features
+- **Cross-Platform Support** — macOS / Linux / Windows (Native + WSL2)
+- **One-Click Installation** — Install via a single curl command, zero dependencies required
+- **Multi-Model Support** — Compatible with cloud LLM APIs (DeepSeek, Tongyi Qwen, OpenAI, OpenRouter, etc.) and local models (vLLM, Ollama)
+- **Multimodal Interaction** — Text chat, voice conversation, image understanding, video understanding
+- **Persistent Memory** — Remembers your preferences, habits, and past conversations without repeated explanation
+- **Multi-Platform Integration** — Telegram, Discord, WeChat, Lark, Web Terminal
+- **Visual Customization** — Realistic style, Anime/Manga style, Abstract Minimalist style
+- **Custom Knowledge Base** — Import documents and web links to build exclusive private knowledge
+- **100% Local Deployment** — All data stays on your device, no cloud dependency
+- **Schedule & Reminders** — Scheduled tasks, daily briefings, important alerts
+
+## 🚀 Quick Start
+### One-Click Install (macOS / Linux)
+```bash
+curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
+```
+
+### Native Windows Installation
+Fully adapted for native Windows environment (WSL not required).
+```cmd
+# 1. Clone or download the project
+git clone https://github.com/muse960/ai-eve.git
+cd ai-eve
+
+# 2. (Optional) Install as system command for global use
+pip install -e .
+
+# 3. Run directly without installation
+python -m cli.main web
+```
+
+The `ai-eve.bat` in project root provides quick entry:
+```cmd
+ai-eve web        # Launch Web UI
+ai-eve            # Launch CLI chat
+ai-eve setup      # Configuration wizard
+```
+
+> To use `ai-eve` command anywhere, add the project path to your system PATH environment variable.
+
+### Configuration
+```bash
+# Interactive configuration wizard
+ai-eve setup
+
+# Configure LLM model
+ai-eve model
+
+# Select visual character style
+ai-eve style
+```
+
+### Launch
+```bash
+# CLI Mode
+ai-eve
+
+# Web UI Mode (visit http://localhost:10110 in browser)
+ai-eve web
+
+# Launch voice conversation
+ai-eve voice
+
+# Check token usage statistics
+ai-eve token
+```
+
+### Emergency Commands
+If the `ai-eve` command is unavailable, use the following direct launch commands:
+```bash
+# CLI Mode
+python -m cli.main
+
+# Show help
+python -m cli.main help
+
+# Web UI Mode
+python -m cli.main web
+
+# Configuration wizard
+python -m cli.main setup
+
+# Model configuration
+python -m cli.main model
+
+# Switch character style
+python -m cli.main style
+
+# Voice conversation
+python -m cli.main voice
+
+# Token usage statistics
+python -m cli.main token
+```
+
+## 📦 Installation Guide
+### macOS
+```bash
+brew install ai-eve/tap/ai-eve
+# Or
+curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
+```
+
+### Linux
+```bash
+curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
+```
+
+### Windows
+#### Native (Recommended)
+Fully native support without WSL.
+```cmd
+# Clone project
+git clone https://github.com/muse960/ai-eve.git
+cd ai-eve
+
+# Launch directly with no extra installation
+python -m cli.main web
+
+# Or use batch file
+ai-eve web
+```
+
+#### WSL2 (Alternative)
+```powershell
+wsl --install
+# Run inside WSL2
+curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
+```
+
+## 🔧 Configuration Guide
+### LLM Model Setup
+| Type | Method | Examples |
+|------|--------|----------|
+| Cloud API | Configure API Key | DeepSeek, Tongyi Qwen, OpenAI |
+| Aggregation Platform | OpenRouter | Access 200+ models |
+| Local Model | Ollama / vLLM | Local deployment for Qwen, Llama, DeepSeek |
+
+```bash
+# Use cloud API
+ai-eve config set model.provider deepseek
+ai-eve config set model.api_key sk-xxx
+
+# Use local model
+ai-eve config set model.provider ollama
+ai-eve config set model.name qwen2.5:7b
+```
+
+### Visual Style Settings
+```bash
+# List available styles
+ai-eve style list
+
+# Set character style
+ai-eve style set realistic    # Realistic Style
+ai-eve style set anime        # Anime / Manga Style
+ai-eve style set minimalist   # Abstract Minimalist Style
+```
+
+## 🗂️ Project Structure
+```
+ai-eve/
+├── cli/                    # CLI Command Line Tools
+│   ├── api_client.py      # API Client (Model Invocation Layer)
+│   ├── main.py            # Entry Point
+│   ├── setup.py           # Installation & Config Wizard
+│   └── commands/          # Sub Commands
+│       └── token_stats.py # Token Usage Statistics
+├── core/                   # Core Business Logic
+│   ├── agent.py           # Agent Core Engine
+│   ├── memory/            # Memory System
+│   ├── model/             # Model Adaptation Layer
+│   └── skills/            # Skill System
+├── ui/                     # User Interface
+│   ├── web/               # Web UI (React)
+│   ├── terminal/          # Terminal UI
+│   └── voice/             # Voice Interaction Module
+├── gateway/                # Message Gateway
+│   ├── telegram/
+│   ├── discord/
+│   ├── wechat/
+│   └── feishu/
+├── assets/                 # Resource Files
+│   └── avatars/           # Character Avatars of Different Styles
+├── scripts/                # Installation & Deployment Scripts
+│   ├── install.sh
+│   └── setup.sh
+├── config/                 # Configuration Templates
+└── docs/                   # Documentation
+```
+
+## 📄 License
+MIT License
+
+## 🤝 Contribute
+Pull requests, issues and feature suggestions are always welcome!
 
 # 🍎 AI 夏娃 (AI Eve)
 
@@ -226,207 +428,6 @@ MIT License
 
 欢迎 PR、Issue、功能建议！
 
-# 🍎 AI Eve
-> Your Exclusive AI Companion — An intelligent companion assistant designed for male users
 
-AI Eve is an open-source, self-hostable AI companion application. More than just a chatbot, she is a virtual companion with personality, memory, and warmth.
-
-## ✨ Features
-- **Cross-Platform Support** — macOS / Linux / Windows (Native + WSL2)
-- **One-Click Installation** — Install via a single curl command, zero dependencies required
-- **Multi-Model Support** — Compatible with cloud LLM APIs (DeepSeek, Tongyi Qwen, OpenAI, OpenRouter, etc.) and local models (vLLM, Ollama)
-- **Multimodal Interaction** — Text chat, voice conversation, image understanding, video understanding
-- **Persistent Memory** — Remembers your preferences, habits, and past conversations without repeated explanation
-- **Multi-Platform Integration** — Telegram, Discord, WeChat, Lark, Web Terminal
-- **Visual Customization** — Realistic style, Anime/Manga style, Abstract Minimalist style
-- **Custom Knowledge Base** — Import documents and web links to build exclusive private knowledge
-- **100% Local Deployment** — All data stays on your device, no cloud dependency
-- **Schedule & Reminders** — Scheduled tasks, daily briefings, important alerts
-
-## 🚀 Quick Start
-### One-Click Install (macOS / Linux)
-```bash
-curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
-```
-
-### Native Windows Installation
-Fully adapted for native Windows environment (WSL not required).
-```cmd
-# 1. Clone or download the project
-git clone https://github.com/muse960/ai-eve.git
-cd ai-eve
-
-# 2. (Optional) Install as system command for global use
-pip install -e .
-
-# 3. Run directly without installation
-python -m cli.main web
-```
-
-The `ai-eve.bat` in project root provides quick entry:
-```cmd
-ai-eve web        # Launch Web UI
-ai-eve            # Launch CLI chat
-ai-eve setup      # Configuration wizard
-```
-
-> To use `ai-eve` command anywhere, add the project path to your system PATH environment variable.
-
-### Configuration
-```bash
-# Interactive configuration wizard
-ai-eve setup
-
-# Configure LLM model
-ai-eve model
-
-# Select visual character style
-ai-eve style
-```
-
-### Launch
-```bash
-# CLI Mode
-ai-eve
-
-# Web UI Mode (visit http://localhost:10110 in browser)
-ai-eve web
-
-# Launch voice conversation
-ai-eve voice
-
-# Check token usage statistics
-ai-eve token
-```
-
-### Emergency Commands
-If the `ai-eve` command is unavailable, use the following direct launch commands:
-```bash
-# CLI Mode
-python -m cli.main
-
-# Show help
-python -m cli.main help
-
-# Web UI Mode
-python -m cli.main web
-
-# Configuration wizard
-python -m cli.main setup
-
-# Model configuration
-python -m cli.main model
-
-# Switch character style
-python -m cli.main style
-
-# Voice conversation
-python -m cli.main voice
-
-# Token usage statistics
-python -m cli.main token
-```
-
-## 📦 Installation Guide
-### macOS
-```bash
-brew install ai-eve/tap/ai-eve
-# Or
-curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
-```
-
-### Linux
-```bash
-curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
-```
-
-### Windows
-#### Native (Recommended)
-Fully native support without WSL.
-```cmd
-# Clone project
-git clone https://github.com/muse960/ai-eve.git
-cd ai-eve
-
-# Launch directly with no extra installation
-python -m cli.main web
-
-# Or use batch file
-ai-eve web
-```
-
-#### WSL2 (Alternative)
-```powershell
-wsl --install
-# Run inside WSL2
-curl -fsSL https://raw.githubusercontent.com/muse960/ai-eve/main/scripts/install.sh | bash
-```
-
-## 🔧 Configuration Guide
-### LLM Model Setup
-| Type | Method | Examples |
-|------|--------|----------|
-| Cloud API | Configure API Key | DeepSeek, Tongyi Qwen, OpenAI |
-| Aggregation Platform | OpenRouter | Access 200+ models |
-| Local Model | Ollama / vLLM | Local deployment for Qwen, Llama, DeepSeek |
-
-```bash
-# Use cloud API
-ai-eve config set model.provider deepseek
-ai-eve config set model.api_key sk-xxx
-
-# Use local model
-ai-eve config set model.provider ollama
-ai-eve config set model.name qwen2.5:7b
-```
-
-### Visual Style Settings
-```bash
-# List available styles
-ai-eve style list
-
-# Set character style
-ai-eve style set realistic    # Realistic Style
-ai-eve style set anime        # Anime / Manga Style
-ai-eve style set minimalist   # Abstract Minimalist Style
-```
-
-## 🗂️ Project Structure
-```
-ai-eve/
-├── cli/                    # CLI Command Line Tools
-│   ├── api_client.py      # API Client (Model Invocation Layer)
-│   ├── main.py            # Entry Point
-│   ├── setup.py           # Installation & Config Wizard
-│   └── commands/          # Sub Commands
-│       └── token_stats.py # Token Usage Statistics
-├── core/                   # Core Business Logic
-│   ├── agent.py           # Agent Core Engine
-│   ├── memory/            # Memory System
-│   ├── model/             # Model Adaptation Layer
-│   └── skills/            # Skill System
-├── ui/                     # User Interface
-│   ├── web/               # Web UI (React)
-│   ├── terminal/          # Terminal UI
-│   └── voice/             # Voice Interaction Module
-├── gateway/                # Message Gateway
-│   ├── telegram/
-│   ├── discord/
-│   ├── wechat/
-│   └── feishu/
-├── assets/                 # Resource Files
-│   └── avatars/           # Character Avatars of Different Styles
-├── scripts/                # Installation & Deployment Scripts
-│   ├── install.sh
-│   └── setup.sh
-├── config/                 # Configuration Templates
-└── docs/                   # Documentation
-```
-
-## 📄 License
-MIT License
-
-## 🤝 Contribute
-Pull requests, issues and feature suggestions are always welcome!
 
 
