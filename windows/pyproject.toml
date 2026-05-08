@@ -1,0 +1,28 @@
+[project]
+name = "ai-eve"
+version = "0.1.0"
+description = "🍎 AI 夏娃 — 你的专属 AI 伴侣"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+
+authors = [
+  {name = "Jack Xing"},
+]
+
+dependencies = []
+
+[tool.setuptools]
+packages = [
+    "cli", "cli.commands",
+    "core", "core.memory", "core.model", "core.skills",
+    "gateway", "gateway.discord", "gateway.feishu", "gateway.telegram", "gateway.wechat",
+    "ui", "ui.terminal", "ui.voice", "ui.web",
+]
+
+[project.scripts]
+ai-eve = "cli.main:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
